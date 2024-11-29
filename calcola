@@ -1,0 +1,67 @@
+import tkinter as tk
+from tkinter import ttk
+
+def calcola(operazione):
+    try:
+        # Ottieni i numeri dai textbox
+        num1 = float(entry1.get())
+        num2 = float(entry2.get())
+        
+        if operazione == "somma":
+            risultato = num1 + num2
+        elif operazione == "sottrazione":
+            risultato = num1 - num2
+        elif operazione == "moltiplicazione":
+            risultato = num1 * num2
+        elif operazione == "divisione":
+            if num2 != 0:
+                risultato = num1 / num2
+            else:
+                risultato = "Errore: divisione per 0"
+        
+        # Risultato
+        label_risultato.config(text=f"Risultato: {risultato}")
+    except ValueError:
+        label_risultato.config(text="Per favore inserire numeri validi!")
+
+# Finestra principale
+root = tk.Tk()
+root.title("Calcolatrice")
+
+# Impostazioni della finestra
+root.geometry("400x400")
+root.config(bg="limegreen")
+
+# Crea le etichette e le caselle di input
+label1 = tk.Label(root, text="Inserire il primo numero:", bg="lightblue", font=("Helvetica", 12))
+label1.pack(pady=10)
+
+entry1 = tk.Entry(root, font=("Helvetica", 12))
+entry1.pack(pady=5)
+
+label2 = tk.Label(root, text="Inserire il secondo numero:", bg="lightblue", font=("Helvetica", 12))
+label2.pack(pady=10)
+
+entry2 = tk.Entry(root, font=("Helvetica", 12))
+entry2.pack(pady=5)
+
+# Bottoni per le operazioni
+button_somma = tk.Button(root, text="Somma", command=lambda: calcola("somma"), font=("Helvetica", 12))
+button_somma.pack(pady=5)
+
+button_sottrazione = tk.Button(root, text="Sottrazione", command=lambda: calcola("sottrazione"), font=("Helvetica", 12))
+button_sottrazione.pack(pady=5)
+
+button_moltiplicazione = tk.Button(root, text="Moltiplicazione", command=lambda: calcola("moltiplicazione"), font=("Helvetica", 12))
+button_moltiplicazione.pack(pady=5)
+
+button_divisione = tk.Button(root, text="Divisione", command=lambda: calcola("divisione"), font=("Helvetica", 12))
+button_divisione.pack(pady=5)
+
+# Label per visualizzare il risultato
+label_risultato = tk.Label(root, text="Risultato: ", bg="lightblue", font=("Helvetica", 14))
+label_risultato.pack(pady=20)
+
+# Avvia la finestra
+root.mainloop()
+
